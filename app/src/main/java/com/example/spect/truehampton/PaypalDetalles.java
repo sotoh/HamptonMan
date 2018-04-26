@@ -1,4 +1,4 @@
-package com.example.spect.hotelhampton;
+package com.example.spect.truehampton;
 
 import android.content.Intent;
 import android.os.Bundle;
