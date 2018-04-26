@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Acerca">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="360dp"
+        android:layout_height="500dp"
+        android:layout_below="@+id/aser"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/habitaciones">
+
+
+        <TextView
+            android:id="@+id/uni"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/carrera"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/carrera"
+            android:layout_marginTop="11dp"
+            android:text="@string/universida_tecnologica_de_torre_n"
+            android:textColor="#120909"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/carrera"
+            android:layout_alignStart="@+id/carrera"
+            android:layout_below="@+id/carrera"
+            android:layout_marginTop="19dp"
+            android:text="@string/Profe"
+            android:textColor="#120909"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tex"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:text="@string/Equipo"
+            android:textColor="#120909"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/carrera"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/uni"
+            android:layout_marginTop="20dp"
+            android:text="@string/Carrera"
+            android:textColor="#120909"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/ver"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tex"
+            android:layout_alignStart="@+id/tex"
+            android:layout_below="@+id/pro"
+            android:layout_marginTop="11dp"
+            android:text="@string/versio"
+            android:textColor="#120909"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/pro"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ver"
+            android:layout_alignStart="@+id/ver"
+            android:layout_below="@+id/textView10"
+            android:layout_marginTop="24dp"
+            android:text="@string/proyecto_final"
+            android:textColor="#120909"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/gra"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ver"
+            android:layout_alignEnd="@+id/tex"
+            android:layout_alignRight="@+id/tex"
+            android:text="@string/gradoseccion"
+            android:textColor="#120909"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/aser"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:text="@string/acercade"
+        android:textColor="#120909"
+        android:textSize="20sp"
+        tools:ignore="NotSibling" />
+
+
+</FrameLayout>
