@@ -93,10 +93,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_reservas) {
             fragment= new ver_reservas();
             fragmenttransaction=true;
-        } else if (id == R.id.nav_ser) {
-
-            fragmenttransaction=true;
         }
+        //else if (id == R.id.nav_ser) {
+
+//            fragmenttransaction=true;
+  //      }
         if (fragmenttransaction)
         {
             getSupportFragmentManager().beginTransaction().replace(R.id.contenido,fragment).commit();
