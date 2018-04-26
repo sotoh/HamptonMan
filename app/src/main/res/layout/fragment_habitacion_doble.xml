@@ -19,7 +19,6 @@
         android:layout_marginRight="17dp"
         android:layout_marginStart="22dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/bitter"
         android:text="Habitación Doble"
         android:textAlignment="center"
         android:textColor="#0d0101"
