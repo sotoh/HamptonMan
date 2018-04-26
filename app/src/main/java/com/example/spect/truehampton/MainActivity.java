@@ -17,7 +17,9 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         EditarDireccion.OnFragmentInteractionListener,
-        EditarTelefonosTarjeta.OnFragmentInteractionListener {
+        EditarTelefonosTarjeta.OnFragmentInteractionListener,
+        mis_pagos.OnFragmentInteractionListener,
+            ver_reservas.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
