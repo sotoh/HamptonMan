@@ -97,8 +97,6 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_ser) {
 
-        } else if (id == R.id.nav_view) {
-
         }
         if (fragmenttransaction)
         {
