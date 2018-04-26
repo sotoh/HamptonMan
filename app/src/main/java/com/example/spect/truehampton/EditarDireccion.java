@@ -9,10 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.spect.truehampton.Models.RequestSingleton;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -25,10 +31,7 @@ import org.json.JSONObject;
  * create an instance of this fragment.
  */
 public class EditarDireccion extends Fragment implements View.OnClickListener,Response.Listener<JSONObject>,Response.ErrorListener {
-        EditText call,numcal,ciudad,pais,estado,cp;
-        Button save;
-        String Url_UP="http://hampton.uttsistemas.com/updateAddress";
-        int id;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -120,17 +123,39 @@ public class EditarDireccion extends Fragment implements View.OnClickListener,Re
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId())
+        {
+            case R.id.gg:
+            {
+                JSONObject jsonObject= new JSONObject();
+                try {
+                    jsonObject.put("calle", call.getText().toString());
+                    jsonObject.put("ncalle", numcal.getText().toString());
+                    jsonObject.put("ciudad", ciudad.getText().toString());
+                    jsonObject.put("estado", estado.getText().toString());
+                    jsonObject.put("pais", pais.getText().toString());
+                    jsonObject.put("codigopostal", cp.getText().toString());
+                    jsonObject.put("idcliente",id);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,Url_UP,jsonObject,this,
+                        this);
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES
+                        ,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                RequestSingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
+            }
+        }
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
-
+        Toast.makeText(getActivity(), "Cambios Sin Guardar", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onResponse(JSONObject response) {
-
+        Toast.makeText(getActivity(), "Cambios Exitosos", Toast.LENGTH_SHORT).show();
     }
 
     /**
