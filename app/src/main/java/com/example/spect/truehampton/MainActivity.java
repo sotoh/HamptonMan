@@ -80,19 +80,32 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        android.support.v4.app.Fragment fragment=null;
+        boolean fragmenttransaction=false;
 
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.nav_editard) {
+            fragment= new EditarDireccion();
+            fragmenttransaction=true;
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_editart) {
+            fragment= new EditarTelefonosTarjeta();
+            fragmenttransaction=true;
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_habitaciones) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_reservas) {
+
+        } else if (id == R.id.nav_ser) {
+
+        } else if (id == R.id.nav_view) {
 
         }
+        if (fragmenttransaction)
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.contenido,fragment).commit();
+            getSupportActionBar().setTitle(item.getTitle());
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
