@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Reservar">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="17dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/bitter"
+        android:text="@string/registro_de_reservaci_n"
+        android:textAlignment="center"
+        android:textColor="#0d0101"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlCompat" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="360dp"
+        android:layout_height="447dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/habitaciones"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="MissingConstraints">
+
+        <ProgressBar
+            android:id="@+id/login_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/Efecha"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="11dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/bfecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/salida"
+            android:layout_marginTop="38dp"
+            android:text="@string/fecha_de_entrada"
+            android:textAlignment="center"
+            android:textColor="#0d0101"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/Efecha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Efecha"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/salida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/hsalida"
+            android:layout_marginTop="123dp"
+            android:text="@string/fecha_de_salida"
+            android:textAlignment="center"
+            android:textColor="#0d0101"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bfecha" />
+
+        <TextView
+            android:id="@+id/hsalida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/bhora"
+            android:layout_marginBottom="164dp"
+            android:text="@string/hora_de_salida"
+            android:textAlignment="center"
+            android:textColor="#0d0101"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bhora"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/bhora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/Eh"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="31dp"
+            android:text="@string/hora_de_entrada"
+            android:textAlignment="center"
+            android:textColor="#0d0101"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/salida"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/bfecha"
+            android:layout_marginBottom="99dp"
+            android:text="@string/n_mero_de_noches"
+            android:textAlignment="center"
+            android:textColor="#0d0101"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/nohab"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <br.com.sapereaude.maskedEditText.MaskedEditText
+            android:id="@+id/Efecha"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/bfecha"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="23dp"
+            android:inputType="date"
+            android:textColor="#0d0101"
+            android:textSize="20sp"
+            android:typeface="monospace"
+            app:keep_hint="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mask="##-##-####"
+            tools:ignore="MissingConstraints" />
+
+        <br.com.sapereaude.maskedEditText.MaskedEditText
+            android:id="@+id/Ehora"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBaseline="@+id/salida"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:inputType="date"
+            android:textSize="20sp"
+            android:typeface="monospace"
+            app:allowed_chars="1234567890"
+            app:keep_hint="true"
+            app:layout_constraintStart_toStartOf="@+id/Efecha"
+            app:layout_constraintTop_toBottomOf="@+id/Efecha"
+            app:mask="##-##-####"
+            tools:ignore="MissingConstraints" />
+
+        <br.com.sapereaude.maskedEditText.MaskedEditText
+            android:id="@+id/Eh"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/login_progress"
+            android:layout_centerVertical="true"
+            android:enabled="false"
+            android:inputType="time"
+            android:textAlignment="gravity"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/Ehora"
+            app:layout_constraintTop_toBottomOf="@+id/Ehora"
+            app:mask="##:##"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/Sh"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBaseline="@+id/hsalida"
+            android:layout_alignEnd="@+id/nohab"
+            android:inputType="number"
+            android:textAlignment="gravity"
+            android:textSize="20sp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/nohab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignTop="@+id/txtid"
+            android:layout_toEndOf="@+id/btningre"
+            android:hint="@string/number"
+            android:inputType="number"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btningre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Eh"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/btningre"
+            style=""
+            android:layout_width="130dp"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="21dp"
+            android:text="@string/registrar"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <CheckBox
+            android:id="@+id/timeCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Eh"
+            android:layout_centerHorizontal="true"
+            android:checked="false"
+            android:text="Diferente Hora" />
+    </RelativeLayout>
+
+</FrameLayout>

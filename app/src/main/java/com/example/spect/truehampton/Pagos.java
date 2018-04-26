@@ -7,31 +7,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-
-import org.json.JSONObject;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link EditarDireccion.OnFragmentInteractionListener} interface
+ * {@link Pagos.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link EditarDireccion#newInstance} factory method to
+ * Use the {@link Pagos#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EditarDireccion extends Fragment {
+public class Pagos extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    EditText call,numcal,ciudad,pais,estado,cp;
-    Button save;
-    String Url_UP="http://hampton.uttsistemas.com/updateAddress";
-    int id;
-    JSONObject jsonObject;
-
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -39,7 +29,7 @@ public class EditarDireccion extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public EditarDireccion() {
+    public Pagos() {
         // Required empty public constructor
     }
 
@@ -49,11 +39,11 @@ public class EditarDireccion extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment EditarDireccion.
+     * @return A new instance of fragment Pagos.
      */
     // TODO: Rename and change types and number of parameters
-    public static EditarDireccion newInstance(String param1, String param2) {
-        EditarDireccion fragment = new EditarDireccion();
+    public static Pagos newInstance(String param1, String param2) {
+        Pagos fragment = new Pagos();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,17 +64,7 @@ public class EditarDireccion extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_fragment_editar_d, container, false);
-        call=(EditText)view.findViewById(R.id.calle);
-        numcal =(EditText)view.findViewById(R.id.numcalle);
-        ciudad=(EditText)view.findViewById(R.id.ciudad);
-        pais=(EditText)view.findViewById(R.id.pais);
-        estado=(EditText)view.findViewById(R.id.estado);
-        cp=(EditText)view.findViewById(R.id.codigop);
-        id= getArguments().getInt("id");
-        save = view.findViewById(R.id.gg);
-        save.setOnClickListener(this);
-        return view;
+        return inflater.inflate(R.layout.fragment_pagos, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
