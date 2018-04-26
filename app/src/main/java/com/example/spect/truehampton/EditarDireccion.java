@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
 import org.json.JSONObject;
 
 
@@ -21,7 +24,11 @@ import org.json.JSONObject;
  * Use the {@link EditarDireccion#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EditarDireccion extends Fragment {
+public class EditarDireccion extends Fragment implements View.OnClickListener,Response.Listener<JSONObject>,Response.ErrorListener {
+        EditText call,numcal,ciudad,pais,estado,cp;
+        Button save;
+        String Url_UP="http://hampton.uttsistemas.com/updateAddress";
+        int id;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -74,7 +81,7 @@ public class EditarDireccion extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_fragment_editar_d, container, false);
+        View view= inflater.inflate(R.layout.fragment_editar_direccion, container, false);
         call=(EditText)view.findViewById(R.id.calle);
         numcal =(EditText)view.findViewById(R.id.numcalle);
         ciudad=(EditText)view.findViewById(R.id.ciudad);
@@ -109,6 +116,21 @@ public class EditarDireccion extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
     }
 
     /**

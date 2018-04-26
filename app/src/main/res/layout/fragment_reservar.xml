@@ -17,7 +17,6 @@
         android:layout_marginRight="17dp"
         android:layout_marginStart="22dp"
         android:layout_marginTop="32dp"
-        android:fontFamily="@font/bitter"
         android:text="@string/registro_de_reservaci_n"
         android:textAlignment="center"
         android:textColor="#0d0101"
