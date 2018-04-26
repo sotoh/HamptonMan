@@ -87,11 +87,15 @@ public class MainActivity extends AppCompatActivity
             fragmenttransaction=true;
 
         } else if (id == R.id.nav_habitaciones) {
+            fragment= new mis_pagos();
+            fragmenttransaction=true;
 
         } else if (id == R.id.nav_reservas) {
-
+            fragment= new ver_reservas();
+            fragmenttransaction=true;
         } else if (id == R.id.nav_ser) {
 
+            fragmenttransaction=true;
         }
         if (fragmenttransaction)
         {
