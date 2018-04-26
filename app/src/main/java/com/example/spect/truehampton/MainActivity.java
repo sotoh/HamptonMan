@@ -6,10 +6,10 @@ import android.annotation.TargetApi;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -39,6 +39,9 @@ import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,
+        EditarDireccion.OnFragmentInteractionListener,
+        EditarTelefonosTarjeta.OnFragmentInteractionListener {
         implements NavigationView.OnNavigationItemSelectedListener {
     Reservar reservarFragment;
     Habitacion habitacionFragment;
@@ -62,14 +65,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -134,17 +129,40 @@ public class MainActivity extends AppCompatActivity
             frag_select=true;
             fragment.setArguments(bundle);
 
+        android.support.v4.app.Fragment fragment=null;
+        boolean fragmenttransaction=false;
+
+        if (id == R.id.nav_editard) {
+            fragment= new EditarDireccion();
+            fragmenttransaction=true;
 
         } else if (id == R.id.nav_reservas) {
+        } else if (id == R.id.nav_editart) {
+            fragment= new EditarTelefonosTarjeta();
+            fragmenttransaction=true;
 
         } else if (id == R.id.nav_habitaciones) {
+        } else if (id == R.id.nav_habitaciones) {
+            fragment= new mis_pagos();
+            fragmenttransaction=true;
 
+        } else if (id == R.id.nav_ser) {
+        } else if (id == R.id.nav_reservas) {
+            fragment= new ver_reservas();
+            fragmenttransaction=true;
         } else if (id == R.id.nav_ser) {
 
         }
         if (frag_select){
             getSupportFragmentManager().beginTransaction().replace(R.id.contenedor,fragment).commit();
+            fragmenttransaction=true;
         }
+        if (fragmenttransaction)
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.contenido,fragment).commit();
+            getSupportActionBar().setTitle(item.getTitle());
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -298,5 +316,10 @@ public class MainActivity extends AppCompatActivity
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
