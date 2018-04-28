@@ -7,7 +7,9 @@
     tools:context=".MenuHome">
 
     <!-- TODO: Update blank fragment layout -->
-
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/textView6"
         android:layout_width="100dp"
@@ -22,14 +24,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/per"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
-        android:background="@drawable/perfil"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="318dp"
-        tools:layout_editor_absoluteY="90dp" />
 
 
     <RelativeLayout
@@ -124,4 +118,5 @@
             android:visibility="invisible" />
 
     </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
 </FrameLayout>
