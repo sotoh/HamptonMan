@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Fragment;
+import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity
         EditarTelefonosTarjeta.OnFragmentInteractionListener,
         MisPagos.OnFragmentInteractionListener,
         ver_reservas.OnFragmentInteractionListener ,
-        MenuHome.OnFragmentInteractionListener{
+        MenuHome.OnFragmentInteractionListener,
+        Reservar.OnFragmentInteractionListener,
+        Servicio.OnFragmentInteractionListener{
     int idcliente;
     Cliente cliente;
     String url_get = "http://hampton.uttsistemas.com/info";
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            //finish();
             super.onBackPressed();
         }
     }

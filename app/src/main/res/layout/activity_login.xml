@@ -12,14 +12,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.spect.truehampton.LoginActivity">
 
+    <FrameLayout
+        android:id="@+id/contenido_registro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></FrameLayout>
 
     <RelativeLayout
         android:id="@+id/login"
         android:layout_width="340dp"
         android:layout_height="499dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="18dp"
         android:layout_marginTop="35dp"
-        android:layout_gravity="center"
         android:background="@drawable/habitaciones">
 
         <!-- Login progress -->

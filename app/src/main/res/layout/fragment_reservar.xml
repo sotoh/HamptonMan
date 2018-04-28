@@ -7,34 +7,19 @@
     tools:context=".Reservar">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="17dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="17dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/registro_de_reservaci_n"
-        android:textAlignment="center"
-        android:textColor="#0d0101"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RtlCompat" />
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
         android:layout_width="360dp"
         android:layout_height="447dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="1dp"
         android:background="@drawable/habitaciones"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,9 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:layout_alignEnd="@+id/salida"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/salida"
-            android:layout_marginTop="38dp"
+            android:layout_marginTop="42dp"
             android:text="@string/fecha_de_entrada"
             android:textAlignment="center"
             android:textColor="#0d0101"
@@ -138,7 +123,7 @@
 
         <br.com.sapereaude.maskedEditText.MaskedEditText
             android:id="@+id/Efecha"
-            android:layout_width="120dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/bfecha"
             android:layout_alignParentEnd="true"
@@ -155,7 +140,7 @@
 
         <br.com.sapereaude.maskedEditText.MaskedEditText
             android:id="@+id/Ehora"
-            android:layout_width="120dp"
+            android:layout_width="131dp"
             android:layout_height="wrap_content"
 
             android:layout_alignBaseline="@+id/salida"
@@ -238,5 +223,7 @@
             android:checked="false"
             android:text="Diferente Hora" />
     </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

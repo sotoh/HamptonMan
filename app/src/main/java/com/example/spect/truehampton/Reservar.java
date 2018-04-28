@@ -61,7 +61,7 @@ public class Reservar extends Fragment implements View.OnClickListener {
     private CheckBox checkBox;
     private Fragment fragment;
     Date arrival = null, departure= null;
-    String url_get = "http://hampton.uttsistemas.com/booking";
+    String url_get = "http://192.168.0.20/myapp/hamptonweb/public/booking";
     private int idClient;
     private BookingTask bookingTask = null;
 

@@ -8,23 +8,24 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/registrar"
-        android:textAlignment="center"
-        android:textColor="#151414"
-        android:textSize="36sp"
-        android:textStyle="bold" />
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="360dp"
         android:layout_height="490dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/habitaciones">
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/habitaciones"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/textView4"
@@ -47,8 +48,8 @@
             android:layout_marginTop="34dp"
             android:background="@drawable/edits"
             android:hint="@string/correo_electronico"
-            android:textSize="14sp"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/pas"
@@ -158,9 +159,9 @@
             android:layout_marginStart="130dp"
             android:layout_marginTop="369dp"
             android:background="@drawable/edits"
-            app:mask="##-##-####"
+            android:inputType="date"
             app:keep_hint="true"
-            android:inputType="date" />
+            app:mask="##-##-####" />
 
         <Button
             android:id="@+id/mandar"
@@ -174,5 +175,7 @@
 
 
     </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

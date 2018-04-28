@@ -1,12 +1,17 @@
 package com.example.spect.truehampton;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.example.spect.truehampton.clases.Cliente;
 
 
 /**
@@ -22,13 +27,14 @@ public class MenuHome extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    Fragment fragment;
+    FragmentTransaction fragmentTransaction;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private Button reservar, habitacion, servicio, ubicacion;
+    int idcliente;
     private OnFragmentInteractionListener mListener;
-
     public MenuHome() {
         // Required empty public constructor
     }
@@ -58,13 +64,57 @@ public class MenuHome extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_menu_home, container, false);
+        reservar = view.findViewById(R.id.reserva);
+        reservar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragment = new Reservar();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).addToBackStack("Menu").commit();
+                Bundle bundle = new Bundle();
+                bundle.putInt("id",idcliente);
+                fragment.setArguments(bundle);
+                //Toast.makeText(drawerhampton.this, "hola pinche putita", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        habitacion = view.findViewById(R.id.habitacion);
+        habitacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).addToBackStack("Menu").commit();
+
+            }
+        });
+        servicio = view.findViewById(R.id.servicio);
+        servicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragment = new Servicio();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).addToBackStack("Menu").commit();
+                Bundle bundle = new Bundle();
+                bundle.putInt("id",idcliente);
+                fragment.setArguments(bundle);
+            }
+        });
+        ubicacion = view.findViewById(R.id.ubicacion);
+        ubicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent agregar = new Intent(getContext(), MapsActivity.class);
+                startActivity(agregar);
+
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

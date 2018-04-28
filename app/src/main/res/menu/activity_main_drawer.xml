@@ -8,11 +8,11 @@
             <item
                 android:id="@+id/nav_editard"
                 android:icon="@drawable/ic_recent_actors_black_24dp"
-                android:title="Editar dirección" />
+                android:title="Editar Dirección" />
             <item
                 android:id="@+id/nav_editart"
                 android:icon="@drawable/ic_call_black_24dp"
-                android:title="Editar Telefono" />
+                android:title="Editar Telefono y Tarjetas de Credito" />
 
         </menu>
     </item>

@@ -1,156 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditarTelefonosTarjeta">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="Editar Perfil"
-        android:textAlignment="center"
-        android:textColor="#151414"
-        android:textSize="36sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="358dp"
-        android:layout_height="480dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="90dp"
-        android:background="@drawable/habitaciones">
+        <RelativeLayout
+            android:layout_width="358dp"
+            android:layout_height="480dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/habitaciones"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            android:text="Tipo de numero"
-            android:textColor="#151414"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+                android:text="Tipo de numero"
+                android:textColor="#151414"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/tipo"
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_alignBottom="@+id/textView5"
-            android:layout_alignLeft="@+id/numtel"
-            android:layout_alignStart="@+id/numtel" />
+            <Spinner
+                android:id="@+id/tipo"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_alignBottom="@+id/textView5"
+                android:layout_alignLeft="@+id/numtel"
+                android:layout_alignStart="@+id/numtel" />
 
 
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="120dp"
-            android:text="Numero"
-            android:textColor="#151414"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="120dp"
+                android:text="Numero"
+                android:textColor="#151414"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="130dp"
-            android:layout_marginLeft="130dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/edits"
-            android:hint=" Numero"
-            android:id="@+id/numtel"/>
+            <EditText
+                android:id="@+id/numtel"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="130dp"
+                android:background="@drawable/edits"
+                android:hint=" Numero" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#bb94da"
-            android:layout_marginTop="190dp"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="190dp"
+                android:background="#bb94da" />
 
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView11"
-            android:layout_alignStart="@+id/textView11"
-            android:layout_centerVertical="true"
-            android:text="Numero"
-            android:textColor="#151414"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView11"
+                android:layout_alignStart="@+id/textView11"
+                android:layout_centerVertical="true"
+                android:text="Numero"
+                android:textColor="#151414"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/ntarjeta"
-            android:layout_width="190dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_alignTop="@+id/tvEmail"
-            android:background="@drawable/edits"
-            android:hint=" Numero de tarjeta" />
-
-
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="280dp"
-            android:textColor="#151414"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="Banco"
-            android:id="@+id/textView11" />
-
-        <EditText
-            android:id="@+id/afili"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView11"
-            android:layout_marginLeft="130dp"
-            android:background="@drawable/edits"
-            android:hint=" Afiliacion" />
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="330dp"
-            android:textColor="#151414"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="Fecha de expiracion"
-            android:id="@+id/textView12" />
-
-        <EditText
-            android:id="@+id/exp"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="340dp"
-            android:layout_marginLeft="130dp"
-            android:background="@drawable/edits"
-            android:hint=" Expiracion"
-            android:inputType="date"
-            />
-
-        <Button
-            android:id="@+id/guard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/exp"
-            android:layout_alignStart="@+id/exp"
-            android:layout_below="@+id/textView12"
-            android:layout_marginLeft="11dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="25dp"
-            android:background="#c38190b7"
-            android:text="Guardar Cambios" />
+            <EditText
+                android:id="@+id/ntarjeta"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tvEmail"
+                android:layout_marginLeft="130dp"
+                android:background="@drawable/edits"
+                android:hint=" Numero de tarjeta" />
 
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="280dp"
+                android:text="Banco"
+                android:textColor="#151414"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/afili"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView11"
+                android:layout_marginLeft="130dp"
+                android:background="@drawable/edits"
+                android:hint=" Afiliacion" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="330dp"
+                android:text="Fecha de expiracion"
+                android:textColor="#151414"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/exp"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="340dp"
+                android:background="@drawable/edits"
+                android:hint=" Expiracion"
+                android:inputType="date" />
+
+            <Button
+                android:id="@+id/guard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="12dp"
+                android:background="#c38190b7"
+                android:text="Guardar Cambios" />
+
+
+        </RelativeLayout>
+
+    </android.support.constraint.ConstraintLayout>
+    <!-- TODO: Update blank fragment layout -->
 
 </FrameLayout>

@@ -31,7 +31,7 @@
     <string name="ubicacion">Ubicacion</string>
     <string name="servicio">Servicio</string>
     <string name="habitacion">Habitaciones</string>
-    <string name="reserva">Reserva</string>
+    <string name="reserva">Reservar</string>
     <string name="todo">TODO</string>
     <string name="title_activity_ubicacion">Map</string>
     <string name="bienvenido_a_hampton">Bienvenido A Hampton</string>

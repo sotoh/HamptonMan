@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -30,6 +32,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -53,10 +56,10 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>,Registro.OnFragmentInteractionListener {
     Button registrar, entrar;
     RequestQueue requestQueue;
-    String url_get = "http://192.168.0.14/myapp/hamptonweb/public/login";
+    String url_get = "http://192.168.0.20/myapp/hamptonweb/public/login";
     public Usuario usuario;
     String email;
     String password;
@@ -83,9 +86,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private View mainLogin;
+    private View registerFragment;
+    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
@@ -93,12 +100,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         populateAutoComplete();
         registrar = findViewById(R.id.email_registrar);
         entrar = findViewById(R.id.email_sign_in_button);
-
+        mainLogin = findViewById(R.id.login);
+        mLoginFormView = findViewById(R.id.login_form);
+        mProgressView = findViewById(R.id.login_progress);
+        registerFragment = findViewById(R.id.contenido_registro);
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent agregar = new Intent(getApplicationContext(), Registro.class);
-                startActivity(agregar);
+                if(mainLogin.getVisibility() == View.GONE)
+                {
+                    Toast.makeText(LoginActivity.this, "Hello Method", Toast.LENGTH_SHORT).show();
+                    mainLogin.setVisibility(View.VISIBLE);
+                    registerFragment.setVisibility(View.GONE);
+                }
+                mainLogin.setVisibility(View.GONE);
+                registerFragment.setVisibility(View.VISIBLE);
+                fragment = new Registro();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.contenido_registro,fragment).commit();
+                fragmentTransaction.addToBackStack(null);
             }
         });
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -116,15 +136,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             }
         });
-
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
     }
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
         }
         getLoaderManager().initLoader(0, null, this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(fragment!=null)
+        {
+            mainLogin.setVisibility(View.VISIBLE);
+            registerFragment.setVisibility(View.GONE);
+        }
+        super.onBackPressed();
     }
 
     private boolean mayRequestContacts() {
@@ -325,6 +352,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     private interface ProfileQuery {
