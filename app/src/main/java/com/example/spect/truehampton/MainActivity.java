@@ -214,15 +214,6 @@ public class MainActivity extends AppCompatActivity
                mAuthTask.execute((Void) null);
                 navName.setText(mAuthTask.usuarioCliente.getNombre()+" "+mAuthTask.usuarioCliente.getApellidoPaterno());
                 navEmail.setText(mAuthTask.usuarioCliente.getUsuario().getEmail());
-
-                //navName.setText(mAuthTask.usuarioCliente.getNombre()+" "+mAuthTask.usuarioCliente.getApellidoPaterno());
-                // navEmail.setText(mAuthTask.usuarioCliente.getUsuario().getEmail());
-                //public Usuario(int id, String email, String create, String update, String delete, Cliente cliente, String contrasena) {
-                if(mAuthTask == null)
-                {
-                    Toast.makeText(MainActivity.this, "No llego nada", Toast.LENGTH_SHORT).show();
-
-                }
             }
         }, new Response.ErrorListener() {
             @Override
