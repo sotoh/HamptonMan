@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,30 +50,58 @@ public class MainActivity extends AppCompatActivity
         Servicio.OnFragmentInteractionListener{
     int idcliente;
     Cliente cliente;
-    String url_get = "http://hampton.uttsistemas.com/info";
+    Toolbar toolbar;
+    String url_get = "http://192.168.43.248/myapp/hamptonweb/public/info";
     CustomerTask mAuthTask = null;
-    private View mProgressView;
+    public ProgressBar mProgressView;
+
     private TextView navName;
     private TextView navEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         idcliente = getIntent().getIntExtra("idcliente",0);
-        //getCustomerInfo();
+        getCustomerInfo();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         setHome();
-        mProgressView = findViewById(R.id.login_progress);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
+        mProgressView = toolbar.findViewById(R.id.home_progress);
+//        mProgressView.setVisibility(View.VISIBLE);
+        View headerView = navigationView.getHeaderView(0);
+        navName = (TextView) headerView.findViewById(R.id.clientName);
+        navEmail = (TextView) headerView.findViewById(R.id.tvEmail);
 
+    }
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    private void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        mProgressView = toolbar.findViewById(R.id.home_progress);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+            this.mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            this.mProgressView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
+            });
+        } else {
+            // The ViewPropertyAnimator APIs are not available, so simply show
+            // and hide the relevant UI components.
+            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        }
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -158,28 +187,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            // mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -203,12 +211,18 @@ public class MainActivity extends AppCompatActivity
                 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
                 cliente = gson.fromJson(response.toString(),Cliente.class);
                 mAuthTask = new CustomerTask(cliente);
-                mAuthTask.execute((Void) null);
+               mAuthTask.execute((Void) null);
                 navName.setText(mAuthTask.usuarioCliente.getNombre()+" "+mAuthTask.usuarioCliente.getApellidoPaterno());
                 navEmail.setText(mAuthTask.usuarioCliente.getUsuario().getEmail());
+
                 //navName.setText(mAuthTask.usuarioCliente.getNombre()+" "+mAuthTask.usuarioCliente.getApellidoPaterno());
                 // navEmail.setText(mAuthTask.usuarioCliente.getUsuario().getEmail());
                 //public Usuario(int id, String email, String create, String update, String delete, Cliente cliente, String contrasena) {
+                if(mAuthTask == null)
+                {
+                    Toast.makeText(MainActivity.this, "No llego nada", Toast.LENGTH_SHORT).show();
+
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -292,7 +306,7 @@ public class MainActivity extends AppCompatActivity
             {
                 // mEmailView.setError(getString(R.string.error_no_email));
                 //mEmailView.requestFocus();
-                //Toast.makeText(drawerhampton.this, "Error al cargar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Erro al Cargar", Toast.LENGTH_SHORT).show();
             }
         }
 
