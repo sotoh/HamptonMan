@@ -30,15 +30,19 @@ import org.json.JSONObject;
  * Use the {@link EditarDireccion#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EditarDireccion extends Fragment implements View.OnClickListener,Response.Listener<JSONObject>,Response.ErrorListener {
+public class EditarDireccion extends Fragment implements View.OnClickListener,
+        Response.Listener<JSONObject>,
+        Response.ErrorListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static String valort;
     EditText call,numcal,ciudad,pais,estado,cp;
     Button save;
     String Url_UP="http://hampton.uttsistemas.com/updateAddress";
+    String url_get="http://hampton.uttsistemas.com/address";
     int id;
     JSONObject jsonObject;
 
@@ -94,10 +98,39 @@ public class EditarDireccion extends Fragment implements View.OnClickListener,Re
         id= getArguments().getInt("id");
         save = view.findViewById(R.id.gg);
         save.setOnClickListener(this);
+
+        ver_cliente();
         return view;
     }
+    public void ver_cliente() {
 
-    // TODO: Rename method, update argument and hook method into UI event
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url_get, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestSingleton.getInstance(getContext()).addToRequestQueue(jsonRequest);
+    }
+
+
+        // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -156,6 +189,9 @@ public class EditarDireccion extends Fragment implements View.OnClickListener,Re
     @Override
     public void onResponse(JSONObject response) {
         Toast.makeText(getActivity(), "Cambios Exitosos", Toast.LENGTH_SHORT).show();
+    }
+    public  void valor(int v){
+        id=v;
     }
 
     /**
