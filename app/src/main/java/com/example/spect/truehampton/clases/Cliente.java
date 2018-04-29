@@ -51,6 +51,7 @@ public class Cliente {
         this.usuario = usuario;
     }
 
+
     public int getIdCliente() {
         return idCliente;
     }
