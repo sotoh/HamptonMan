@@ -153,7 +153,8 @@
             android:layout_below="@+id/textView10"
             android:layout_centerHorizontal="true"
             android:background="#c38190b7"
-            android:text="Guardar Cambios" />
+            android:text="Editar"
+             />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
 

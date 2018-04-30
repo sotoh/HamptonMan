@@ -1,6 +1,7 @@
 package com.example.spect.truehampton;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,6 +10,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.spect.truehampton.Models.RequestSingleton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import br.com.sapereaude.maskedEditText.MaskedEditText;
 
 
 /**
@@ -19,11 +39,17 @@ import android.support.v4.app.FragmentTransaction;
  * Use the {@link Registro#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Registro extends Fragment {
+public class Registro extends Fragment implements View.OnClickListener, Response.ErrorListener,Response.Listener<JSONObject> {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    EditText nombre, paterno, materno, correo, contrasena;
+    MaskedEditText fnaciniento;
+    Button mandar;
+    String URL_POST = "http://192.168.0.20/myapp/hamptonweb/public/insert";
+    private String mysqlTargetIn;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -67,18 +93,22 @@ public class Registro extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_registro, container, false);
-
+        correo = view.findViewById(R.id.correo);
+        contrasena = view.findViewById(R.id.contrasena);
+        nombre = view.findViewById(R.id.nombre);
+        paterno = view.findViewById(R.id.apaterno);
+        materno = view.findViewById(R.id.amaterno);
+        fnaciniento = (MaskedEditText) view.findViewById(R.id.fnacimiento);
+        mandar = view.findViewById(R.id.mandar);
+        mandar.setOnClickListener(this);
         return view;
     }
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -94,6 +124,54 @@ public class Registro extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.mandar:
+                JSONObject object = new JSONObject();
+
+                try {
+                    Date mysqlDateIn = null;
+                    mysqlDateIn = new SimpleDateFormat("dd-MM-yyyy").parse(fnaciniento.getText().toString());
+                    //arrival = mysqlDateIn;
+                    String mysqlTarget = new SimpleDateFormat("yyyy-MM-dd").format(mysqlDateIn);
+                    //this.mysqlTargetIn = mysqlTarget;
+                    object.put("nombre", nombre.getText().toString());
+                    object.put("apellidop", paterno.getText().toString());
+                    object.put("apellidom", materno.getText().toString());
+                    object.put("fnacimiento", mysqlTarget);
+                    object.put("correo", correo.getText().toString());
+                    object.put("contrasena", contrasena.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL_POST, object, this, this);
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                RequestSingleton.getInstance(getContext()).addToRequestQueue(jsonObjectRequest);
+                break;
+
+        }
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(getContext(), "Registro fallido", Toast.LENGTH_SHORT).show();
+        Intent login = new Intent();
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+        Toast.makeText(getContext(), "Registro exitoso", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(),LoginActivity.class);
+        startActivity(intent);
+
     }
 
     /**

@@ -60,6 +60,8 @@ public class MenuHome extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -72,6 +74,7 @@ public class MenuHome extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu_home, container, false);
+        idcliente = getArguments().getInt("idcliente");
         reservar = view.findViewById(R.id.reserva);
         reservar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,16 +91,19 @@ public class MenuHome extends Fragment {
         habitacion = view.findViewById(R.id.habitacion);
         habitacion.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View view   ) {
+                fragment = new CuartoFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).addToBackStack("Menu").commit();
-
+                Bundle bundle = new Bundle();
+                bundle.putInt("id",idcliente);
+                fragment.setArguments(bundle);
             }
         });
         servicio = view.findViewById(R.id.servicio);
         servicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 fragment = new Servicio();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).addToBackStack("Menu").commit();
                 Bundle bundle = new Bundle();

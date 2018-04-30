@@ -17,6 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.spect.truehampton.Models.RequestSingleton;
+import com.example.spect.truehampton.clases.Direccion;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,10 +41,12 @@ public class EditarDireccion extends Fragment implements View.OnClickListener,
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static String valort;
+    Direccion direccion;
     EditText call,numcal,ciudad,pais,estado,cp;
+    Boolean action= false;
     Button save;
-    String Url_UP="http://hampton.uttsistemas.com/updateAddress";
-    String url_get="http://hampton.uttsistemas.com/address";
+    String Url_UP="http://192.168.0.20/myapp/hamptonweb/public/updateaddress";
+    String url_get="http://192.168.0.20/myapp/hamptonweb/public/address";
     int id;
     JSONObject jsonObject;
 
@@ -95,14 +99,13 @@ public class EditarDireccion extends Fragment implements View.OnClickListener,
         pais=(EditText)view.findViewById(R.id.pais);
         estado=(EditText)view.findViewById(R.id.estado);
         cp=(EditText)view.findViewById(R.id.codigop);
-        id= getArguments().getInt("id");
+        id= getArguments().getInt("idcliente");
         save = view.findViewById(R.id.gg);
         save.setOnClickListener(this);
-
-        ver_cliente();
+        verCliente();
         return view;
     }
-    public void ver_cliente() {
+    private void verCliente() {
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -114,21 +117,66 @@ public class EditarDireccion extends Fragment implements View.OnClickListener,
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url_get, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
-
-
+                save.setText("Editar");
+                Gson gson = new Gson();
+                direccion = gson.fromJson(response.toString(),Direccion.class);
+                call.setText(direccion.getCalle());
+                numcal.setText(direccion.getNcalle());
+                ciudad.setText(direccion.getCiudad());
+                pais.setText(direccion.getPais());
+                estado.setText(direccion.getEstado());
+                cp.setText(Integer.toString(direccion.getCpostal()));
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                save.setText("Agregar");
+                action = true;
             }
         });
 
         jsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestSingleton.getInstance(getContext()).addToRequestQueue(jsonRequest);
     }
+    private void insertCliente()
+    {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("idcliente", id);
+            jsonObject.put("calle", call.getText().toString());
+            jsonObject.put("ncalle", numcal.getText().toString());
+            jsonObject.put("ciudad", ciudad.getText().toString());
+            jsonObject.put("estado", estado.getText().toString());
+            jsonObject.put("pais", pais.getText().toString());
+            jsonObject.put("codigopostal", cp.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, Url_UP, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //gson.fromJson(response.toString(),Usuario.class);
+                //Toast.makeText(getContext(), "Entré", Toast.LENGTH_SHORT).show();
+                Gson gson = new Gson();
+                direccion = gson.fromJson(response.toString(),Direccion.class);
+                call.setText(direccion.getCalle());
+                numcal.setText(direccion.getNcalle());
+                ciudad.setText(direccion.getCiudad());
+                pais.setText(direccion.getPais());
+                estado.setText(direccion.getEstado());
+                cp.setText(direccion.getCpostal());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Error de Red", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestSingleton.getInstance(getContext()).addToRequestQueue(jsonRequest);
+    }
 
         // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -160,23 +208,10 @@ public class EditarDireccion extends Fragment implements View.OnClickListener,
         {
             case R.id.gg:
             {
-                JSONObject jsonObject= new JSONObject();
-                try {
-                    jsonObject.put("calle", call.getText().toString());
-                    jsonObject.put("ncalle", numcal.getText().toString());
-                    jsonObject.put("ciudad", ciudad.getText().toString());
-                    jsonObject.put("estado", estado.getText().toString());
-                    jsonObject.put("pais", pais.getText().toString());
-                    jsonObject.put("codigopostal", cp.getText().toString());
-                    jsonObject.put("idcliente",id);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if(action) {
+                    Toast.makeText(getContext(), "BergaRica", Toast.LENGTH_SHORT).show();
+                    insertCliente();
                 }
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,Url_UP,jsonObject,this,
-                        this);
-                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES
-                        ,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                RequestSingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
             }
         }
     }

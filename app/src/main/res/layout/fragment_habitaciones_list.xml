@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HabitacionesFragment"
+    >
+<android.support.v7.widget.RecyclerView
     android:id="@+id/list"
     android:name="com.example.spect.truehampton.HabitacionesFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".HabitacionesFragment"
-    tools:listitem="@layout/fragment_habitaciones" />
+    tools:listitem="@layout/fragment_habitaciones"
+    android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/idbtnFinalize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Terminar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="123dp" />
+</LinearLayout>

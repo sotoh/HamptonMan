@@ -3,6 +3,7 @@ package com.example.spect.truehampton;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.DownloadManager;
 import android.app.Fragment;
 import android.content.ServiceConnection;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.text.method.QwertyKeyListener;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -33,6 +35,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.spect.truehampton.Models.RequestSingleton;
 import com.example.spect.truehampton.clases.Cliente;
+import com.example.spect.truehampton.clases.HabitacionReserva;
+import com.example.spect.truehampton.dummy.DummyContent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -47,23 +51,26 @@ public class MainActivity extends AppCompatActivity
         ver_reservas.OnFragmentInteractionListener ,
         MenuHome.OnFragmentInteractionListener,
         Reservar.OnFragmentInteractionListener,
-        Servicio.OnFragmentInteractionListener{
+        Servicio.OnFragmentInteractionListener,
+        HabitacionesFragment.OnListFragmentInteractionListener,
+CuartoFragment.OnListFragmentInteractionListener{
     int idcliente;
     Cliente cliente;
     Toolbar toolbar;
-    String url_get = "http://192.168.43.248/myapp/hamptonweb/public/info";
+    String url_get = "http://192.168.0.20/myapp/hamptonweb/public/info";
     CustomerTask mAuthTask = null;
     public ProgressBar mProgressView;
 
     private TextView navName;
     private TextView navEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        idcliente = getIntent().getIntExtra("idcliente",0);
+        idcliente = getIntent().getIntExtra("idcliente", 0);
         getCustomerInfo();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -78,8 +85,8 @@ public class MainActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         navName = (TextView) headerView.findViewById(R.id.clientName);
         navEmail = (TextView) headerView.findViewById(R.id.tvEmail);
-
     }
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -102,6 +109,7 @@ public class MainActivity extends AppCompatActivity
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
         }
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -119,12 +127,17 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-    private void setHome()
-    {
+
+    private void setHome() {
         android.support.v4.app.Fragment fragment = new MenuHome();
-        getSupportFragmentManager().beginTransaction().replace(R.id.contenido,fragment).commit();
+        Bundle bundle = new Bundle();
+        bundle.putInt("idcliente", idcliente);
+        fragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).commit();
         getSupportActionBar().setTitle("Menu");
+
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -146,37 +159,42 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        android.support.v4.app.Fragment fragment=null;
-        boolean fragmenttransaction=false;
+        android.support.v4.app.Fragment fragment = null;
+        boolean fragmenttransaction = false;
 
         if (id == R.id.nav_editard) {
-            fragment= new EditarDireccion();
+            fragment = new EditarDireccion();
             Bundle bundle = new Bundle();
-            bundle.putInt("id",idcliente);
+            bundle.putInt("idcliente", idcliente);
             fragment.setArguments(bundle);
 
-            fragmenttransaction=true;
+            fragmenttransaction = true;
 
-        } else if (id == R.id.nav_editart) {
-            fragment= new EditarTelefonosTarjeta();
-            fragmenttransaction=true;
+        } /*else if (id == R.id.nav_editart) {
+            fragment = new EditarTelefonosTarjeta();
+            Bundle bundle = new Bundle();
+            bundle.putInt("idcliente", idcliente);
+            fragmenttransaction = true;
 
-        } else if (id == R.id.nav_habitaciones) {
-            fragment= new MisPagos();
-            fragmenttransaction=true;
+        } */else if (id == R.id.nav_habitaciones) {
+            fragment = new MisPagos();
+            Bundle bundle = new Bundle();
+            bundle.putInt("idcliente", idcliente);
+            fragmenttransaction = true;
 
         } else if (id == R.id.nav_reservas) {
-            fragment= new ver_reservas();
-            fragmenttransaction=true;
+            fragment = new ver_reservas();
+            Bundle bundle = new Bundle();
+            bundle.putInt("idcliente", idcliente);
+            fragmenttransaction = true;
         }
         //else if (id == R.id.nav_ser) {
 
 //            fragmenttransaction=true;
-  //      }
-        if (fragmenttransaction)
-        {
+        //      }
+        if (fragmenttransaction) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.contenido,fragment).commit();
+            fragmentTransaction.replace(R.id.contenido, fragment).commit();
             fragmentTransaction.addToBackStack("Menu");
             getSupportActionBar().setTitle(item.getTitle());
 
@@ -201,18 +219,18 @@ public class MainActivity extends AppCompatActivity
         View focusView = null;
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("id",idcliente);
+            jsonObject.put("id", idcliente);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST,url_get,jsonObject, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url_get, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-                cliente = gson.fromJson(response.toString(),Cliente.class);
+                cliente = gson.fromJson(response.toString(), Cliente.class);
                 mAuthTask = new CustomerTask(cliente);
-               mAuthTask.execute((Void) null);
-                navName.setText(mAuthTask.usuarioCliente.getNombre()+" "+mAuthTask.usuarioCliente.getApellidoPaterno());
+                mAuthTask.execute((Void) null);
+                navName.setText(mAuthTask.usuarioCliente.getNombre() + " " + mAuthTask.usuarioCliente.getApellidoPaterno());
                 navEmail.setText(mAuthTask.usuarioCliente.getUsuario().getEmail());
             }
         }, new Response.ErrorListener() {
@@ -223,7 +241,7 @@ public class MainActivity extends AppCompatActivity
                 mAuthTask.execute((Void) null);
             }
         });
-        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestSingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonRequest);
 
         if (cancel) {
@@ -236,6 +254,11 @@ public class MainActivity extends AppCompatActivity
             showProgress(true);
 
         }
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 
     public class CustomerTask extends AsyncTask<Void, Void, Boolean> {

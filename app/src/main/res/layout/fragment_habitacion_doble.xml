@@ -4,10 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".habitaciones.HabitacionDoble">
+    tools:context=".habitaciones.HabitacionDoble"
+    android:background="@drawable/hab7">
 
-
-
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -33,11 +35,11 @@
         android:id="@+id/relativeLayout3"
         android:layout_width="360dp"
         android:layout_height="495dp"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="1dp"
         android:background="@drawable/habitaciones"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,9 +57,12 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="80dp"
             android:text="En la habitacion Doble contamos con dos recamaras en un solo cuarto, tambien cuenta con un baño, una televicion, un escritoro, con vista a la ciudad y wifi."
-            android:textSize="25dp"
+            android:textAlignment="center"
             android:textColor="#0e0404"
-            android:textAlignment="center"/>
+            android:textSize="25dp" />
     </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
+
+
 
 </FrameLayout>

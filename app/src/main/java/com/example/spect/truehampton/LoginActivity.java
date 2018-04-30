@@ -59,7 +59,8 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>,Registro.OnFragmentInteractionListener {
     Button registrar, entrar;
     RequestQueue requestQueue;
-    String url_get = "http://192.168.43.248/myapp/hamptonweb/public/login";
+    //String url_get = "http://192.168.43.248/myapp/hamptonweb/public/login";
+    String url_get = "http://192.168.0.20/myapp/hamptonweb/public/login";
     public Usuario usuario;
     String email;
     String password;

@@ -25,7 +25,7 @@ public class Direccion {
     private int cpostal;
     @SerializedName("street")
     private String calle;
-    @SerializedName("streeNumber")
+    @SerializedName("streetNumber")
     private String ncalle;
     @SerializedName("city")
     private String ciudad;
@@ -33,8 +33,10 @@ public class Direccion {
     private String pais;
     @SerializedName("customers_id")
     private int clienteId;
+    @SerializedName("state")
+    private String estado;
 
-    public Direccion(int id_direccion, int cpostal, String calle, String ncalle, String ciudad, String pais, int clienteId) {
+    public Direccion(int id_direccion, int cpostal, String calle, String ncalle, String ciudad, String pais, int clienteId, String estado) {
         this.id_direccion = id_direccion;
         this.cpostal = cpostal;
         this.calle = calle;
@@ -42,6 +44,7 @@ public class Direccion {
         this.ciudad = ciudad;
         this.pais = pais;
         this.clienteId = clienteId;
+        this.estado = estado;
     }
 
     public int getId_direccion() {
@@ -98,5 +101,13 @@ public class Direccion {
 
     public void setClienteId(int clienteId) {
         this.clienteId = clienteId;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

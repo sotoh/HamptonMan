@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -59,11 +60,12 @@ public class Reservar extends Fragment implements View.OnClickListener {
     private View mProgressView;
     private View mLoginFormView;
     private CheckBox checkBox;
-    private Fragment fragment;
+
     Date arrival = null, departure= null;
-    String url_get = "http://192.168.43.248/myapp/hamptonweb/public/booking";
+    String url_get = "http://192.168.0.20/myapp/hamptonweb/public/booking";
     private int idClient;
     private BookingTask bookingTask = null;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -309,7 +311,8 @@ public class Reservar extends Fragment implements View.OnClickListener {
             showProgress(false);
 
             if (success) {
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.contenido, fragment).addToBackStack(null).commit();
+                Fragment fragment = new HabitacionesFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).addToBackStack("Menu").commit();
                 hab = Integer.parseInt(timeOut.getText().toString());
                 Bundle bundle = new Bundle();
                 //bundle.putString("id",reserva.getId_re());
