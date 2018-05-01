@@ -35,6 +35,7 @@ public class MenuHome extends Fragment {
     private Button reservar, habitacion, servicio, ubicacion;
     int idcliente;
     private OnFragmentInteractionListener mListener;
+
     public MenuHome() {
         // Required empty public constructor
     }
@@ -82,7 +83,7 @@ public class MenuHome extends Fragment {
                 fragment = new Reservar();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).addToBackStack("Menu").commit();
                 Bundle bundle = new Bundle();
-                bundle.putInt("id",idcliente);
+                bundle.putInt("id", idcliente);
                 fragment.setArguments(bundle);
                 //Toast.makeText(drawerhampton.this, "hola pinche putita", Toast.LENGTH_SHORT).show();
             }
@@ -91,11 +92,11 @@ public class MenuHome extends Fragment {
         habitacion = view.findViewById(R.id.habitacion);
         habitacion.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view   ) {
+            public void onClick(View view) {
                 fragment = new CuartoFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).addToBackStack("Menu").commit();
                 Bundle bundle = new Bundle();
-                bundle.putInt("id",idcliente);
+                bundle.putInt("id", idcliente);
                 fragment.setArguments(bundle);
             }
         });
@@ -107,19 +108,11 @@ public class MenuHome extends Fragment {
                 fragment = new Servicio();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenido, fragment).addToBackStack("Menu").commit();
                 Bundle bundle = new Bundle();
-                bundle.putInt("id",idcliente);
+                bundle.putInt("id", idcliente);
                 fragment.setArguments(bundle);
             }
         });
-        ubicacion = view.findViewById(R.id.ubicacion);
-        ubicacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent agregar = new Intent(getContext(), MapsActivity.class);
-                startActivity(agregar);
 
-            }
-        });
         return view;
     }
 

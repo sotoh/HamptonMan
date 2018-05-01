@@ -9,11 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/servicios"
+            android:textColor="#000"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="NotSibling" />
+
         <RelativeLayout
             android:id="@+id/relativeLayout5"
             android:layout_width="0dp"
             android:layout_height="490dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="26dp"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
             android:background="@drawable/habitaciones"
@@ -44,16 +59,16 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/turismo"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginEnd="21dp"
-                android:layout_marginTop="90dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="39dp"
                 android:drawableTop="@drawable/carros"
                 android:text="@string/estacionamiento"
-
                 app:layout_constraintBottom_toTopOf="@+id/turismo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/comida"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
                 tools:ignore="NotSibling" />
 
             <Button
@@ -62,8 +77,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="55dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="25dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginRight="70dp"
                 android:drawableTop="@drawable/tur"
                 android:text="@string/destinos_turisticos"
                 app:layout_constraintBottom_toBottomOf="parent"

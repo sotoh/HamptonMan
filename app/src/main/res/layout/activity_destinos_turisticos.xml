@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DestinosTuristicos">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="400dp"
+        android:layout_height="45dp"
+        android:text="Lugares Turisticos"
+        android:textColor="#120e0e"
+        android:textSize="35dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="11dp" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="340dp"
+        android:layout_height="475dp"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/habitaciones"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="MissingConstraints">
+
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="400dp"
+            android:layout_height="370dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="   *Parque religioso Cristo de las Noas: 16 km/10 millas
+   *Centro comercial Galerías Laguna: 2 km/1,5 millas
+  *Museo el Torreoncito: 11 km/7 millas
+  *Museo de la Casa del Cerro: 13 km/8 millas
+  *Campo de golf Los Azulejos: 11 km/7 millas
+  *Campo de golf Montebello: 5 km/3 millas"
+            android:textSize="25dp" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -59,7 +59,7 @@ public class HabitacionesFragment extends Fragment implements MyHabitacionesRecy
     private List<Habitacion> habitacionList = new ArrayList<>();
     private List<HabitacionReserva> reservaList = new ArrayList<>();
     private Button button;
-    String url_get = "http://192.168.0.20/myapp/hamptonweb/public/addrooms";
+    String url_get = "http://192.168.43.248/myapp/hamptonweb/public/addrooms";
     int nhabitaciones;
 
     Button btnNext;

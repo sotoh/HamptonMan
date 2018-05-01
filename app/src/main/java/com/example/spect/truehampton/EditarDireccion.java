@@ -45,8 +45,8 @@ public class EditarDireccion extends Fragment implements View.OnClickListener,
     EditText call,numcal,ciudad,pais,estado,cp;
     Boolean action= false;
     Button save;
-    String Url_UP="http://192.168.0.20/myapp/hamptonweb/public/updateaddress";
-    String url_get="http://192.168.0.20/myapp/hamptonweb/public/address";
+    String Url_UP="http://192.168.43.248/myapp/hamptonweb/public/updateaddress";
+    String url_get="http://192.168.43.248/myapp/hamptonweb/public/address";
     int id;
     JSONObject jsonObject;
 

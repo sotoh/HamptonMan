@@ -93,7 +93,7 @@ public class MyHabitacionesRecyclerViewAdapter extends RecyclerView.Adapter<MyHa
             public void onClick(View v) {
                 //String tipoHabitacion, int huespedes
                 //singleRoom = new HabitacionReserva()
-                HabitacionReserva habitacionReserva =new HabitacionReserva(holder.spinnRoom.getSelectedItem().toString(),(holder.nAdults.getValue()+ holder.nKids.getValue()));
+                HabitacionReserva habitacionReserva = new HabitacionReserva(holder.spinnRoom.getSelectedItem().toString(),(holder.nAdults.getValue()+ holder.nKids.getValue()));
                 if(habitacionReserva == null)
                 {
                     Toast.makeText(context, "No se puede avanzar", Toast.LENGTH_SHORT).show();
@@ -189,7 +189,7 @@ public class MyHabitacionesRecyclerViewAdapter extends RecyclerView.Adapter<MyHa
                         e.printStackTrace();
                     }
                     JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST,
-                            "http://192.168.0.20/myapp/hamptonweb/public/allrooms", jsonObject, new Response.Listener<JSONObject>() {
+                            "http://192.168.43.248/myapp/hamptonweb/public/allrooms", jsonObject, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             try {

@@ -48,7 +48,7 @@ public class Registro extends Fragment implements View.OnClickListener, Response
     EditText nombre, paterno, materno, correo, contrasena;
     MaskedEditText fnaciniento;
     Button mandar;
-    String URL_POST = "http://192.168.0.20/myapp/hamptonweb/public/insert";
+    String URL_POST = "http://192.168.43.248/myapp/hamptonweb/public/insert";
     private String mysqlTargetIn;
 
     // TODO: Rename and change types of parameters

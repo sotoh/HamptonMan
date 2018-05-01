@@ -57,7 +57,7 @@ CuartoFragment.OnListFragmentInteractionListener{
     int idcliente;
     Cliente cliente;
     Toolbar toolbar;
-    String url_get = "http://192.168.0.20/myapp/hamptonweb/public/info";
+    String url_get = "http://192.168.43.248/myapp/hamptonweb/public/info";
     CustomerTask mAuthTask = null;
     public ProgressBar mProgressView;
 
@@ -182,12 +182,12 @@ CuartoFragment.OnListFragmentInteractionListener{
             bundle.putInt("idcliente", idcliente);
             fragmenttransaction = true;
 
-        } else if (id == R.id.nav_reservas) {
+        } /*else if (id == R.id.nav_reservas) {
             fragment = new ver_reservas();
             Bundle bundle = new Bundle();
             bundle.putInt("idcliente", idcliente);
             fragmenttransaction = true;
-        }
+        }*/
         //else if (id == R.id.nav_ser) {
 
 //            fragmenttransaction=true;
